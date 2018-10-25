@@ -3,17 +3,21 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular7First": {
+    "angular6First": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "sass"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular7First",
+            "outputPath": "dist/angular6First",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,7 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.sass"
             ],
             "scripts": []
           },
@@ -43,25 +47,32 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular7First:build"
+            "browserTarget": "angular6First:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular7First:build:production"
+              "browserTarget": "angular6First:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular7First:build"
+            "browserTarget": "angular6First:build"
           }
         },
         "test": {
@@ -72,7 +83,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.sass"
             ],
             "scripts": [],
             "assets": [
@@ -95,19 +106,20 @@
         }
       }
     },
-    "angular7First-e2e": {
+    "angular6First-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular7First:serve"
+            "devServerTarget": "angular6First:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular7First:serve:production"
+              "devServerTarget": "angular6First:serve:production"
             }
           }
         },
@@ -123,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "angular7First"
+  "defaultProject": "angular6First"
 }
